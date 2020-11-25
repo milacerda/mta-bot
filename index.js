@@ -4,11 +4,11 @@ const cron = require('node-cron');
 const rp = require('request-promise');
 const moment = require('moment');
 const tz = require('moment-timezone');
-const url = 'https://api.vhx.tv/products/featured_items?site_id=119312';
+const url_api = 'https://api.vhx.tv/products/featured_items?site_id=119312';
 let token =
   'eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ2YmZlZmMzNGIyNTdhYTE4Y2E2NDUzNDE2ZTlmZmRjNjk4MDAxMDdhZTQ2ZWJhODg0YTU2ZDBjOGQ4NTYzMzgifQ.eyJhcHBfaWQiOjc2NDMsImV4cCI6MTYwNjI3MTUwNywibm9uY2UiOiIzNDBkMGM4N2QzMDdlNzk4Iiwic2l0ZV9pZCI6MTE5MzEyLCJ1c2VyX2lkIjoyMjY2Nzg4M30.XWVJngZq_5NXCVUfHE4AzHfy1zf5fMHbl2FLXxWk58f3AuFllFmqA4n5ZFZI2rDRje87xanMwiQX_ihguwvPZO32F8s6UgmS-FNecMQ8N9RXhLmB0TzboZ_V5Z2XC6Vb3EIhOcgEtwhxIQEYXzTvWpZF8N8vkrtSo2YbQcemYBzkszxeR1AaYoFOLvnRLSOAxy2OPL-LL4e4l5UbiWuaOs4EKPi6Hj70pfMNbns9o6dobIHtbBm0rm7_xdMvqAX3EquPT-HhGxHpQbiOrlUR9gnQdJlFcBWfwihAsvOSd0MgD8-l-tiayZyowuB34c89O9KMTzPiKcL7Ji0Qb4_I6iJYChX3NZelc9CDPvlrLwiQirER8RPjsHYpZILaYnuH8doHX8ZK9Gp9EsBzH66yCR-sRPvxflhsIb84cRV4N90sOWuBY6cC4ehfFmYiFEzT1NcU38edYes_S80TUiXMrnXTjp6tJp-qN9qDdDggJOkQ3MNHTJhrMbaycNNP6ri-ZMcbkKbthxHAC16IT-UIqGATYyfMcNNHn6a_ePHTStaboTGqBBvZpqTXc7LXO0XN-sNGalNNshPOI9ljYZHj83mqkyF3_Oz8PHcoXrtGc8mlR1SQ7cFbmvNPCXond8NTFG6wnc1qYK_vrx4aZ5bcw2kFm8lIKVrg7cfOta0NQxQ';
 
-const axios = require('axios');
+const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 const url = 'https://www.mcflytotalaccess.com/browse';
 
@@ -184,12 +184,12 @@ client.on('message', (msg) => {
 client.login('NzgwNTU1ODc5MzkyNDc3MTk0.X7wzTw.cZF0N_EMnxEvHYyWF-Y74ilYcAY');
 
 cron.schedule('* * * * *', () => {
-  console.log('Executando a tarefa a cada 1 minuto');
+  // console.log('Executando a tarefa a cada 1 minuto');
   if (token === '') {
     return;
   }
     rp({
-    uri: url,
+    uri: url_api,
     headers: {
         Authorization: 'Bearer ' + token,
     },
@@ -197,8 +197,8 @@ cron.schedule('* * * * *', () => {
     })
     .then(function (repos) {
         if (repos._embedded.items[0].live_video === true) {
-          let beforeTime = moment().tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
-          let afterTime = moment().tz('Europe/London').format('YYYY-MM-DDTHH:mm:59Z');
+          let beforeTime = moment().subtract(1, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
+          let afterTime = moment().add(1, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:59Z');
 
           if (
             moment(repos._embedded.items[0].scheduled_at).isBetween(
@@ -214,20 +214,38 @@ cron.schedule('* * * * *', () => {
         }
     })
     .catch(function(err){
-      var respErr  = JSON.parse(err.error);
-      var errorResult = {
-          origUrl: respErr.origUrl,
-          error: respErr
-      };
-      results.push(errorResult);
-    })
-    .catch(function(err){
-      console.error(err); // This will print any error that was thrown in the previous error handler.
+      console.log(err.error.message);
+      token = '';
       refreshToken();
     });
   
 });
 
 function refreshToken() {
-  token = '';
+  puppeteer
+  .launch()
+  .then(function(browser) {
+    return browser.newPage();
+  })
+  .then(function(page) {
+    return page.goto(url).then(function() {
+      return page.content();
+    });
+  })
+  .then(function(html) {
+    const $ = cheerio.load(html);
+    $('script').each((idx, elem) => {
+      if (elem.children[0]) {
+        if (elem.children[0].data.includes('TOKEN = "')) {
+          let tk = elem.children[0].data.replace('TOKEN = "','').split('";')[0];
+          token = tk.replace(/ /gi, '').replace(/\r?\n|\r/g, '');
+        }
+      }
+    });
+  })
+  .catch(function(err) {
+    //handle error
+    console.log(err);
+  });
+
 }
