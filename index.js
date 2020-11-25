@@ -223,7 +223,7 @@ cron.schedule('* * * * *', () => {
 
 function refreshToken() {
   puppeteer
-  .launch()
+  .launch({ args: ['--no-sandbox'] })
   .then(function(browser) {
     return browser.newPage();
   })
