@@ -214,13 +214,13 @@ cron.schedule('* * * * *', () => {
         }
     })
     .catch(function(err){
-      console.log(err.error.message);
+      console.log('linha 217: ', err.error.message);
       token = '';
       refreshToken();
       return err;
     })
     .catch(function(err){
-      console.log(err.error.message);
+      console.log('linha 223: ', err.error.message);
     })
 
   
@@ -250,7 +250,11 @@ function refreshToken() {
   })
   .catch(function(err) {
     //handle error
-    console.log(err);
+    console.log('linha 253: ', err);
+  })
+  .catch(function(err) {
+    //handle error
+    console.log('linha 257: ', err);
   });
 
 }
