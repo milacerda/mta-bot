@@ -5,7 +5,8 @@ const rp = require('request-promise');
 const moment = require('moment');
 const tz = require('moment-timezone');
 const url = 'https://api.vhx.tv/products/featured_items?site_id=119312';
-const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ2YmZlZmMzNGIyNTdhYTE4Y2E2NDUzNDE2ZTlmZmRjNjk4MDAxMDdhZTQ2ZWJhODg0YTU2ZDBjOGQ4NTYzMzgifQ.eyJhcHBfaWQiOjc2NDMsImV4cCI6MTYwNjE4MTMxOSwibm9uY2UiOiI3ZTcwMmJhZGU3OGJiYjViIiwic2l0ZV9pZCI6MTE5MzEyfQ.eMUeKPeuhk3MCVEOnN0W9VP3GmtNUjd4gJe2bAGtzr-ORQt_JrBaSJ_y8_rE3Nyz_Rg3dtrjnHNEpSFHjuhlmEcfqjcjS73slROEmkwtL5DyRon0jisnzUB41_i0Hn1bYpLabxhFHPt98a05G9aqwcZ0Zo59YwdygVtCrwdZjDEf8Zp_4y6Zh9yJBWFP-vCU0Y4OYWTipcoCdjdrivhZhEiFARXdstyKHMd25KXW9KT7iNOHBunKsLCphC9MWXwpIeZ7iO7ueDGEiofHz-6hdgGt3zXK2-fvJaJ3-ZKHunPG0M9LK5YTuElAsA_TmIsBeylAOIxvAxEe-auLP_nrzSOMn2cOkRKn1JK1eekLgy_2DnCRBdJu8oBEqiXYKUm3pCXo5SKdM-BZUUKdrN5fMBgvvEXvPtHF9mMiWpzfulFsmpSmc2D-BxOiVgKkooUI1KO6b_u6p0LSgS419y5s856Cu78lLolzfA3KEJNwyk5yLfOuPJzKoeAaSkDTGmpD-7cPQK0BUEqmIjQ0b5ME7EFxtKE_eBia1KZB2CJQyx1YO3cM1il41Z5TFNSxXJ6p--VmCPdiKJugpTo9KQf22vpo6mTageo_IFJkf2XwZrLpBunxfZ_e0YFivvz6457ZwG0bJirawiIkQ46KNcXo9Fk7CgIJd7eB8JfqI_sez1c';
+const token =
+  'eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ2YmZlZmMzNGIyNTdhYTE4Y2E2NDUzNDE2ZTlmZmRjNjk4MDAxMDdhZTQ2ZWJhODg0YTU2ZDBjOGQ4NTYzMzgifQ.eyJhcHBfaWQiOjc2NDMsImV4cCI6MTYwNjI3MTUwNywibm9uY2UiOiIzNDBkMGM4N2QzMDdlNzk4Iiwic2l0ZV9pZCI6MTE5MzEyLCJ1c2VyX2lkIjoyMjY2Nzg4M30.XWVJngZq_5NXCVUfHE4AzHfy1zf5fMHbl2FLXxWk58f3AuFllFmqA4n5ZFZI2rDRje87xanMwiQX_ihguwvPZO32F8s6UgmS-FNecMQ8N9RXhLmB0TzboZ_V5Z2XC6Vb3EIhOcgEtwhxIQEYXzTvWpZF8N8vkrtSo2YbQcemYBzkszxeR1AaYoFOLvnRLSOAxy2OPL-LL4e4l5UbiWuaOs4EKPi6Hj70pfMNbns9o6dobIHtbBm0rm7_xdMvqAX3EquPT-HhGxHpQbiOrlUR9gnQdJlFcBWfwihAsvOSd0MgD8-l-tiayZyowuB34c89O9KMTzPiKcL7Ji0Qb4_I6iJYChX3NZelc9CDPvlrLwiQirER8RPjsHYpZILaYnuH8doHX8ZK9Gp9EsBzH66yCR-sRPvxflhsIb84cRV4N90sOWuBY6cC4ehfFmYiFEzT1NcU38edYes_S80TUiXMrnXTjp6tJp-qN9qDdDggJOkQ3MNHTJhrMbaycNNP6ri-ZMcbkKbthxHAC16IT-UIqGATYyfMcNNHn6a_ePHTStaboTGqBBvZpqTXc7LXO0XN-sNGalNNshPOI9ljYZHj83mqkyF3_Oz8PHcoXrtGc8mlR1SQ7cFbmvNPCXond8NTFG6wnc1qYK_vrx4aZ5bcw2kFm8lIKVrg7cfOta0NQxQ';
 
 
 const responseTest = {
@@ -207,7 +208,7 @@ cron.schedule('* * * * *', () => {
         }
     })
     .catch(function (err) {
-        console.log(err);
+        console.log(err.message);
     });
   
 });
