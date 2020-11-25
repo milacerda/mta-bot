@@ -217,7 +217,12 @@ cron.schedule('* * * * *', () => {
       console.log(err.error.message);
       token = '';
       refreshToken();
-    });
+      return err;
+    })
+    .catch(function(err){
+      console.log(err.error.message);
+    })
+
   
 });
 
