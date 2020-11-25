@@ -182,6 +182,9 @@ client.login('NzgwNTU1ODc5MzkyNDc3MTk0.X7wzTw.cZF0N_EMnxEvHYyWF-Y74ilYcAY');
 
 cron.schedule('* * * * *', () => {
   console.log('Executando a tarefa a cada 1 minuto');
+  if (token === '') {
+    return;
+  }
     rp({
     uri: url,
     headers: {
@@ -207,8 +210,22 @@ cron.schedule('* * * * *', () => {
           }
         }
     })
-    .catch(function (err) {
-        console.log(err.message);
+    .catch(function(err){
+      should.throw.error.to.console();
+      var respErr  = JSON.parse(err.error);
+      var errorResult = {
+          origUrl: respErr.origUrl,
+          error: respErr
+      };
+      results.push(errorResult);
+    })
+    .catch(function(err){
+      console.error(err); // This will print any error that was thrown in the previous error handler.
+      refreshToken();
     });
   
 });
+
+function refreshToken() {
+  token = '';
+}
