@@ -12,6 +12,10 @@ const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 const url = 'https://www.mcflytotalaccess.com/browse';
 
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
+
 const responseTest = {
   _links: {
     self: {
@@ -257,3 +261,5 @@ function refreshToken() {
   });
 
 }
+
+express().listen(PORT, () => console.log(`Listening on ${ PORT }`))
