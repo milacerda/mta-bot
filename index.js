@@ -262,4 +262,8 @@ function refreshToken() {
 
 }
 
+app.get('/',function(req,res){
+  res.send("We all look the same in the dark");
+});
+
 express().listen(PORT, () => console.log(`Listening on ${ PORT }`))
