@@ -217,7 +217,6 @@ cron.schedule('* * * * *', () => {
       console.log('linha 217: ', err.error.message);
       token = '';
       refreshToken();
-      return err;
     })
     .catch(function(err){
       console.log('linha 223: ', err.error.message);
