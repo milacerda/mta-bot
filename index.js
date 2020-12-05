@@ -248,6 +248,7 @@ function refreshToken() {
         if (elem.children[0].data.includes('TOKEN = "')) {
           let tk = elem.children[0].data.replace('TOKEN = "','').split('";')[0];
           token = tk.replace(/ /gi, '').replace(/\r?\n|\r/g, '');
+          console.log(token);
         }
       }
     });
