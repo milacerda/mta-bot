@@ -238,7 +238,7 @@ cron.schedule('* * * * *', () => {
 
 function refreshToken() {
   puppeteer
-  .launch({args: ['--no-sandbox', '--disable-setuid-sandbox']})
+  .launch({args: ['--no-sandbox']})
   .then(function(browser) {
     return browser.newPage();
   })
