@@ -202,8 +202,13 @@ cron.schedule('* * * * *', () => {
     })
     .then(function (repos) {
         if (repos._embedded.items[0].live_video === true) {
-          let beforeTime = moment().subtract(1, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
+          console.log('live');
+          let beforeTime = moment().subtract(2, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
           let afterTime = moment().add(1, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:59Z');
+
+          console.log('now: ' + moment().format());
+          console.log('before: ' + beforeTime);
+          console.log('after: ' + afterTime);
 
           if (
             moment(repos._embedded.items[0].scheduled_at).isBetween(
@@ -215,6 +220,7 @@ cron.schedule('* * * * *', () => {
           ) {
             const channel = client.channels.cache.get('780570519992795209');
             channel.send('@everyone McFly is live on MTA!');
+            // console.log('@everyone McFly is live on MTA!');
           }
         }
     })
