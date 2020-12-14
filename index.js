@@ -169,6 +169,11 @@ client.on('message', (msg) => {
 client.login('NzgwNTU1ODc5MzkyNDc3MTk0.X7wzTw.cZF0N_EMnxEvHYyWF-Y74ilYcAY');
 
 cron.schedule('* * * * *', () => {
+  const currentHour = new Date().getHours();
+  if (currentHour < 8 || currentHour > 22) {
+    return;
+  }
+
   // console.log('Executando a tarefa a cada 1 minuto');
   if (token === '') {
     return;
