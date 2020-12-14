@@ -79,7 +79,7 @@ const responseTest = {
         "seconds_count": 0,
         "live_video": true,
         "live_status": "started",
-        "scheduled_at": "2020-12-14T01:25:00Z",
+        "scheduled_at": "2020-12-14T01:35:00Z",
         "short_description": null,
         "updated_at": "2020-12-13T18:57:31Z",
         "url": "mcfly-games-night"
@@ -182,17 +182,18 @@ cron.schedule('* * * * *', () => {
     })
     .then(function (repos) {
         // if (responseTest._embedded.items[0].live_video === true) {
-        console.log('now: ' + moment().format());
         if (repos._embedded.items[0].live_video === true) {
-          // console.log('live');
-          let beforeTime = moment().subtract(2, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
-          let afterTime = moment().add(1, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:59Z');
-
+          console.log('live');
+          let beforeTime = moment().subtract(1, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
+          let afterTime = moment().tz('Europe/London').format('YYYY-MM-DDTHH:mm:59Z');
+            
+          console.log('now: ' + moment().format());
           console.log('before: ' + beforeTime);
           console.log('after: ' + afterTime);
 
           if (
-            moment(repos._embedded.items[0].scheduled_at).isBetween(
+            // moment(responseTest._embedded.items[0].scheduled_at).isBetween(
+              moment(repos._embedded.items[0].scheduled_at).isBetween(
               beforeTime,
               afterTime,
               'minutes',
@@ -201,17 +202,16 @@ cron.schedule('* * * * *', () => {
           ) {
             const channel = client.channels.cache.get('780570519992795209');
             channel.send('@everyone McFly is live on MTA!');
-            console.log('@everyone McFly is live on MTA!');
           }
         }
     })
     .catch(function(err){
-      console.log('linha 217: ', err.error.message);
+      console.log('linha 209: ', err.error.message);
       token = '';
       refreshToken();
     })
     .catch(function(err){
-      console.log('linha 223: ', err.error.message);
+      console.log('linha 214: ', err.error.message);
     })
 
   
@@ -242,11 +242,11 @@ function refreshToken() {
   })
   .catch(function(err) {
     //handle error
-    console.log('linha 253: ', err);
+    console.log('linha 245: ', err);
   })
   .catch(function(err) {
     //handle error
-    console.log('linha 257: ', err);
+    console.log('linha 249: ', err);
   });
 
 }
