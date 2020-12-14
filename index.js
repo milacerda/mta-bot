@@ -203,7 +203,7 @@ cron.schedule('* * * * *', () => {
             channel.send('@everyone McFly is live on MTA!');
             console.log('@everyone McFly is live on MTA!');
           }
-        // }
+        }
     })
     .catch(function(err){
       console.log('linha 217: ', err.error.message);
