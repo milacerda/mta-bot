@@ -18,167 +18,147 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 
 const responseTest = {
-  _links: {
-    self: {
-      href:
-        'https://api.vhx.tv/products/featured_items?site=119312&page=1&per_page=50',
+  "_links": {
+    "self": {
+      "href": "https://api.vhx.tv/products/featured_items?site=119312&page=1&per_page=50"
     },
-    first: {
-      href:
-        'https://api.vhx.tv/products/featured_items?site=119312&page=1&per_page=50',
+    "first": {
+      "href": "https://api.vhx.tv/products/featured_items?site=119312&page=1&per_page=50"
     },
-    prev: {
-      href: null,
+    "prev": {
+      "href": null
     },
-    next: {
-      href: null,
+    "next": {
+      "href": null
     },
-    last: {
-      href: 'https://api.vhx.tv/products/featured_items?site=119312&',
-    },
+    "last": {
+      "href": "https://api.vhx.tv/products/featured_items?site=119312&"
+    }
   },
-  count: 3,
-  total: 3,
-  _embedded: {
-    items: [
+  "count": 3,
+  "total": 3,
+  "_embedded": {
+    "items": [
       {
-        _links: {
-          video_page: {
-            href:
-              'https://www.mcflytotalaccess.com/featured-category/videos/streamy-weamy',
-          },
+        "_links": {
+          "video_page": {
+            "href": "https://www.mcflytotalaccess.com/featured-category/videos/mcfly-games-night"
+          }
         },
-        additional_images: {
-          aspect_ratio_16_6: null,
-          aspect_ratio_16_14: null,
+        "additional_images": {
+          "aspect_ratio_16_6": null,
+          "aspect_ratio_16_14": null
         },
-        created_at: '2020-11-23T18:00:12Z',
-        description: '',
-        duration: {
-          seconds: 8900,
-          formatted: '02:28:20',
+        "created_at": "2020-12-13T18:42:56Z",
+        "description": "",
+        "duration": {
+          "seconds": 0,
+          "formatted": "00:00:00"
         },
-        id: 1190426,
-        name: 'Streamy Weamy',
-        status: 'complete',
-        thumbnail: {
-          small:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8b22001a-f4f3-4139-bdf2-2212b4703fc3.jpg?auto=format%2Ccompress&fit=crop&h=135&q=20&w=240',
-          medium:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8b22001a-f4f3-4139-bdf2-2212b4703fc3.jpg?auto=format%2Ccompress&fit=crop&h=360&q=70&w=640',
-          large:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8b22001a-f4f3-4139-bdf2-2212b4703fc3.jpg?auto=format%2Ccompress&fit=crop&h=720&q=75&w=1280',
-          source:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8b22001a-f4f3-4139-bdf2-2212b4703fc3.jpg',
-          blurred:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8b22001a-f4f3-4139-bdf2-2212b4703fc3.jpg?blur=180',
-        },
-        title: 'Streamy Weamy',
-        type: 'video',
-        seconds_count: 5227373,
-        live_video: true,
-        live_status: 'ended',
-        scheduled_at: '2020-11-24T01:31:00Z',
-        short_description: null,
-        updated_at: '2020-11-23T23:09:15Z',
-        url: 'streamy-weamy',
-      },
-      {
-        _links: {
-          video_page: {
-            href:
-              'https://www.mcflytotalaccess.com/featured-category/videos/get-tbag-out-of-here',
-          },
-        },
-        additional_images: {
-          aspect_ratio_16_6: null,
-          aspect_ratio_16_14: null,
-        },
-        created_at: '2020-11-22T20:57:50Z',
-        description: '',
-        duration: {
-          seconds: 0,
-          formatted: '00:00:00',
-        },
-        id: 1189034,
-        name: 'Get TBAG Out Of Here',
-        products: [
+        "id": 1220781,
+        "name": "McFly Games Night",
+        "products": [
           {
-            id: 82497,
-            type: 'subscription',
-            name: 'Mcfly Total Access Subscription',
-            sku: 'monthly-subscription-133',
-            is_fvod: false,
-          },
+            "id": 82497,
+            "type": "subscription",
+            "name": "McFly Total Access Subscription",
+            "sku": "monthly-subscription-133",
+            "is_fvod": false
+          }
         ],
-        status: 'created',
-        thumbnail: {
-          small:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8bfefd29-5e77-4702-9ab3-4d5e980c6e70.jpg?auto=format%2Ccompress&fit=crop&h=135&q=20&w=240',
-          medium:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8bfefd29-5e77-4702-9ab3-4d5e980c6e70.jpg?auto=format%2Ccompress&fit=crop&h=360&q=70&w=640',
-          large:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8bfefd29-5e77-4702-9ab3-4d5e980c6e70.jpg?auto=format%2Ccompress&fit=crop&h=720&q=75&w=1280',
-          source:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8bfefd29-5e77-4702-9ab3-4d5e980c6e70.jpg',
-          blurred:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/8bfefd29-5e77-4702-9ab3-4d5e980c6e70.jpg?blur=180',
+        "status": "created",
+        "thumbnail": {
+          "small": "https://vhx.imgix.net/mcflytotalaccess/assets/6bfcaf80-9042-4700-b15a-80efb5ab754c-8063c0ee.png?auto=format%2Ccompress&fit=crop&h=135&q=20&w=240",
+          "medium": "https://vhx.imgix.net/mcflytotalaccess/assets/6bfcaf80-9042-4700-b15a-80efb5ab754c-8063c0ee.png?auto=format%2Ccompress&fit=crop&h=360&q=70&w=640",
+          "large": "https://vhx.imgix.net/mcflytotalaccess/assets/6bfcaf80-9042-4700-b15a-80efb5ab754c-8063c0ee.png?auto=format%2Ccompress&fit=crop&h=720&q=75&w=1280",
+          "source": "https://vhx.imgix.net/mcflytotalaccess/assets/6bfcaf80-9042-4700-b15a-80efb5ab754c-8063c0ee.png",
+          "blurred": "https://vhx.imgix.net/mcflytotalaccess/assets/6bfcaf80-9042-4700-b15a-80efb5ab754c-8063c0ee.png?blur=180"
         },
-        title: 'Get TBAG Out Of Here',
-        type: 'video',
-        seconds_count: 795286,
-        live_video: true,
-        live_status: 'disconnected',
-        scheduled_at: '2020-11-22T20:57:49Z',
-        short_description: null,
-        updated_at: '2020-11-22T22:18:19Z',
-        url: 'get-tbag-out-of-here',
+        "title": "McFly Games Night",
+        "type": "video",
+        "seconds_count": 0,
+        "live_video": true,
+        "live_status": "started",
+        "scheduled_at": "2020-12-14T01:25:00Z",
+        "short_description": null,
+        "updated_at": "2020-12-13T18:57:31Z",
+        "url": "mcfly-games-night"
       },
       {
-        _links: {
-          video_page: {
-            href:
-              'https://www.mcflytotalaccess.com/featured-category/videos/mcfly-o2-live-4k-master-4k',
-          },
+        "_links": {
+          "video_page": {
+            "href": "https://www.mcflytotalaccess.com/featured-category/videos/o2-concert-watchalong"
+          }
         },
-        additional_images: {
-          aspect_ratio_16_6: null,
-          aspect_ratio_16_14: null,
+        "additional_images": {
+          "aspect_ratio_16_6": null,
+          "aspect_ratio_16_14": null
         },
-        created_at: '2020-11-19T00:38:17Z',
-        description: '',
-        duration: {
-          seconds: 5981,
-          formatted: '01:39:41',
+        "created_at": "2020-11-26T15:42:13Z",
+        "description": "",
+        "duration": {
+          "seconds": 8932,
+          "formatted": "02:28:52"
         },
-        id: 1182909,
-        name: 'MCFLY LIVE AT THE O2',
-        status: 'complete',
-        thumbnail: {
-          small:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png?auto=format%2Ccompress&fit=crop&h=135&q=20&w=240',
-          medium:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png?auto=format%2Ccompress&fit=crop&h=360&q=70&w=640',
-          large:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png?auto=format%2Ccompress&fit=crop&h=720&q=75&w=1280',
-          source:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png',
-          blurred:
-            'https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png?blur=180',
+        "id": 1195705,
+        "name": "O2 Concert Watchalong",
+        "status": "complete",
+        "thumbnail": {
+          "small": "https://vhx.imgix.net/mcflytotalaccess/assets/3bc68583-3068-419a-bdb2-81e5e30bd793-dedf4572.jpg?auto=format%2Ccompress&fit=crop&h=135&q=20&w=240",
+          "medium": "https://vhx.imgix.net/mcflytotalaccess/assets/3bc68583-3068-419a-bdb2-81e5e30bd793-dedf4572.jpg?auto=format%2Ccompress&fit=crop&h=360&q=70&w=640",
+          "large": "https://vhx.imgix.net/mcflytotalaccess/assets/3bc68583-3068-419a-bdb2-81e5e30bd793-dedf4572.jpg?auto=format%2Ccompress&fit=crop&h=720&q=75&w=1280",
+          "source": "https://vhx.imgix.net/mcflytotalaccess/assets/3bc68583-3068-419a-bdb2-81e5e30bd793-dedf4572.jpg",
+          "blurred": "https://vhx.imgix.net/mcflytotalaccess/assets/3bc68583-3068-419a-bdb2-81e5e30bd793-dedf4572.jpg?blur=180"
         },
-        title: 'MCFLY LIVE AT THE O2',
-        type: 'video',
-        seconds_count: 12564390,
-        live_video: false,
-        live_status: 'pending',
-        scheduled_at: null,
-        short_description: null,
-        updated_at: '2020-11-20T08:19:39Z',
-        url: 'mcfly-o2-live-4k-master-4k',
+        "title": "O2 Concert Watchalong",
+        "type": "video",
+        "seconds_count": 12023407,
+        "live_video": false,
+        "live_status": "ended",
+        "scheduled_at": "2020-11-26T20:00:00Z",
+        "short_description": null,
+        "updated_at": "2020-11-27T00:35:27Z",
+        "url": "o2-concert-watchalong"
       },
-    ],
-  },
-};
+      {
+        "_links": {
+          "video_page": {
+            "href": "https://www.mcflytotalaccess.com/featured-category/videos/mcfly-o2-live-4k-master-4k"
+          }
+        },
+        "additional_images": {
+          "aspect_ratio_16_6": null,
+          "aspect_ratio_16_14": null
+        },
+        "created_at": "2020-11-19T00:38:17Z",
+        "description": "",
+        "duration": {
+          "seconds": 5981,
+          "formatted": "01:39:41"
+        },
+        "id": 1182909,
+        "name": "MCFLY LIVE AT THE O2",
+        "status": "complete",
+        "thumbnail": {
+          "small": "https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png?auto=format%2Ccompress&fit=crop&h=135&q=20&w=240",
+          "medium": "https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png?auto=format%2Ccompress&fit=crop&h=360&q=70&w=640",
+          "large": "https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png?auto=format%2Ccompress&fit=crop&h=720&q=75&w=1280",
+          "source": "https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png",
+          "blurred": "https://vhx.imgix.net/mcflytotalaccess/assets/b9ef7f10-70f0-4550-a362-0f5e5af7f7d6-30219422.png?blur=180"
+        },
+        "title": "MCFLY LIVE AT THE O2",
+        "type": "video",
+        "seconds_count": 15888680,
+        "live_video": false,
+        "live_status": "pending",
+        "scheduled_at": null,
+        "short_description": null,
+        "updated_at": "2020-11-20T08:19:39Z",
+        "url": "mcfly-o2-live-4k-master-4k"
+      }
+    ]
+  }
+}
 
 client.on('message', (msg) => {
   if (msg.content === 'ping') {
@@ -201,12 +181,13 @@ cron.schedule('* * * * *', () => {
     json: true,
     })
     .then(function (repos) {
+        // if (responseTest._embedded.items[0].live_video === true) {
+        console.log('now: ' + moment().format());
         if (repos._embedded.items[0].live_video === true) {
-          console.log('live');
+          // console.log('live');
           let beforeTime = moment().subtract(2, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
           let afterTime = moment().add(1, "minutes").tz('Europe/London').format('YYYY-MM-DDTHH:mm:59Z');
 
-          console.log('now: ' + moment().format());
           console.log('before: ' + beforeTime);
           console.log('after: ' + afterTime);
 
@@ -220,9 +201,9 @@ cron.schedule('* * * * *', () => {
           ) {
             const channel = client.channels.cache.get('780570519992795209');
             channel.send('@everyone McFly is live on MTA!');
-            // console.log('@everyone McFly is live on MTA!');
+            console.log('@everyone McFly is live on MTA!');
           }
-        }
+        // }
     })
     .catch(function(err){
       console.log('linha 217: ', err.error.message);
