@@ -2,8 +2,10 @@
 
 This is a Discord Bot that announces when McFly is live on MTA (www.mcflytotalaccess.com)
 
+
 ## Installation
 
+Run on CLI:
 npm install
 
 
@@ -13,6 +15,7 @@ DISCORD_KEY = Your Discord API KEY
 
 DISCORD_CHANNEL_ID = The ID of the channel where you want to send the notification
 (https://stackoverflow.com/questions/41515134/discord-bot-cant-get-channel-by-name)
+
 
 ## Heroku
 
