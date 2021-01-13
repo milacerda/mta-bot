@@ -74,7 +74,7 @@ function checkLive() {
   })
 }
 
-function refreshToken() {
+async function refreshToken() {
   const browser = await puppeteer
   .launch({
     headless: true,
