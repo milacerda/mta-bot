@@ -21,7 +21,7 @@ const DISCORD_KEY = 'NzgwNTU1ODc5MzkyNDc3MTk0.X7wzTw.cZF0N_EMnxEvHYyWF-Y74ilYcAY
 
 client.login(DISCORD_KEY);
 
-cron.schedule('* * * * *', () => {
+cron.schedule('5 * * * *', () => {
   const currentHour = new Date().getHours();
   // I don't think they will be going live during these hours, so I'm skipping it
   if (currentHour < 8 || currentHour > 22) {
@@ -48,7 +48,7 @@ function checkLive() {
   .then(function (repos) {
     if (repos._embedded.items[0].live_video === true) {
 
-      let beforeTime = moment().tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
+      let beforeTime = moment().subtract(5, 'minutes').tz('Europe/London').format('YYYY-MM-DDTHH:mm:00Z');
       let afterTime = moment().tz('Europe/London').format('YYYY-MM-DDTHH:mm:59Z');
 
       if (
