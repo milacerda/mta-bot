@@ -6,7 +6,6 @@ const moment = require('moment');
 const tz = require('moment-timezone');
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
-const chromium = require('chrome-aws-lambda');
 
 const express = require('express');
 const app = express();
@@ -75,76 +74,29 @@ function checkLive() {
   })
 }
 
-function refreshTokenOld() {
-  puppeteer
-  .launch({args: ['--no-sandbox']})
-  .then(function(browser) {
-    return browser.newPage();
-  })
-  .then(function(page) {
-    return page.goto(URL).then(function() {
-      return page.content();
-    });
-  })
-  .then(function(html) {
-    const $ = cheerio.load(html);
-    $('script').each((idx, elem) => {
-      if (elem.children[0]) {
-        if (elem.children[0].data.includes('TOKEN = "')) {
-          let tk = elem.children[0].data.replace('TOKEN = "','').split('";')[0];
-          token = tk.replace(/ /gi, '').replace(/\r?\n|\r/g, '');
-          console.log('new token');
-          checkLive();
-        }
-      }
-    });
-  })
-  .catch(function(err) {
-    console.log(err);
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
-
-}
-
-async function refreshToken() {
-  chromium.puppeteer
+function refreshToken() {
+  const browser = await puppeteer
   .launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
-    ignoreHTTPSErrors: true,
-  })
-  .then(function(browser) {
-    return browser.newPage();
-  })
-  .then(function(page) {
-    return page.goto(URL).then(function() {
-      return page.content();
-    });
-  })
-  .then(function(html) {
-    const $ = cheerio.load(html);
-    $('script').each((idx, elem) => {
-      if (elem.children[0]) {
-        if (elem.children[0].data.includes('TOKEN = "')) {
-          let tk = elem.children[0].data.replace('TOKEN = "','').split('";')[0];
-          token = tk.replace(/ /gi, '').replace(/\r?\n|\r/g, '');
-          console.log('new token');
-          checkLive();
-        }
-      }
-    });
-  })
-  .catch(function(err) {
-    console.log(err);
-  })
-  .catch(function(err) {
-    console.log(err);
+    headless: true,
+    args: ['--no-sandbox']
   });
 
+  const tab = await browser.newPage();
+  const html = await (await tab.goto(URL)).content();
+  const $ = cheerio.load(html);
+
+  $('script').each((idx, elem) => {
+    if (elem.children[0]) {
+      if (elem.children[0].data.includes('TOKEN = "')) {
+        let tk = elem.children[0].data.replace('TOKEN = "','').split('";')[0];
+        token = tk.replace(/ /gi, '').replace(/\r?\n|\r/g, '');
+        console.log('New token: ', token);
+        checkLive();
+      }
+    }
+  });
+
+  browser.close();
 }
 
 // We need a path otherwise it doesn't work on Heroku
