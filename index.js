@@ -15,8 +15,8 @@ const URL = 'https://www.mcflytotalaccess.com/browse';
 const URL_API = 'https://api.vhx.tv/products/featured_items?site_id=119312';
 let token = '';
 
-const DISCORD_CHANNEL_ID = '780570519992795209';
-const DISCORD_KEY = 'NzgwNTU1ODc5MzkyNDc3MTk0.X7wzTw.cZF0N_EMnxEvHYyWF-Y74ilYcAY';
+const DISCORD_CHANNEL_ID = '';
+const DISCORD_KEY = '';
 
 client.login(DISCORD_KEY);
 
